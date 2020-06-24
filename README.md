@@ -9,11 +9,11 @@ reproducible.
 How to Reproduce this on your cluster.
 
 The project has been divided into two parts:-
-<dl>
-<dt>1. [Producing the docker image of spring](helm-charts/helm-deploy.md)</dt>
 
-<dt>2. [Deploying with Helm](spring-app/image-build.md)</dt>
-</dl>
+1. [Producing the docker image of spring](https://github.com/DevopsRizwan/spring-helm-demo/blob/master/helm-charts/README.md)
+
+2.  [Deploying with Helm](https://github.com/DevopsRizwan/spring-helm-demo/blob/master/spring-app/README.md)
+
 Kindly follow the above two steps  to get the following
 
 Expected output:
