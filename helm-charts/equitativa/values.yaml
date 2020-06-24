@@ -1,0 +1,83 @@
+# Default values for equitativa.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+# Declare configMap for postgresDb user and hostname
+
+postgresDbConfigMap:
+  postgresDbConfigName: postgres-config-name
+
+  # postgres DbName By-Default it is "postgres"
+  postgresDbUser: postgres
+  
+  # this value is the Cluster_IP of posgres_ha primary service kindly replace accordingly
+  postgresDbHost: 10.0.68.31
+
+# Declare secret for postgresDb password
+
+postgresDbSecret:
+   secretName: postgres-secret-name
+   
+   # base64 encoded value for dbPassWord
+   dbPassword: dXJHSmZKNWhJWg==
+
+# Container defination and image secret defination
+
+container:
+  name: spring-boot-postgres-sample
+  image:
+    repository: rizwanjavid/equitativa_demo_app
+   
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "0.0.6"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: LoadBalancer
+  # spring-boot-postgres-sample expose port number
+  port: 8080
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  annotations: {}
+  
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
