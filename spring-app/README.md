@@ -1,8 +1,13 @@
 
-# How to build spring-helm-demo
+## How to build spring-helm-demo
+Prerequisite to run
 
-1. Execute `./mvnw -DskipTests package`
- It will create a target Jar with below output
+1. Docker installed n machine
+2. Maven >3.2
+
+Execute `./mvnw -DskipTests package`
+
+It will create a target Jar with below output
 
  ```
 [INFO] ------------------------------------------------------------------------
@@ -13,8 +18,8 @@
 [INFO] Final Memory: 32M/219M
 
  ```
-
-2. Build a Docker image and push the image to Docker Hub
+---------
+ Build a Docker image and push the image to Docker Hub
 
 `docker build -t rizwanjavid/equitativa_demo_app/0.0.6`
 
