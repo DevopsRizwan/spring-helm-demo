@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.postgresDbConfigMap.postgresDbConfigName }}
+  labels:
+    {{- include "equitativa.labels" . | nindent 4 }}
+data:
+  postgres_host: {{ .Values.postgresDbConfigMap.postgresDbHost }}
+  postgres_user: {{ .Values.postgresDbConfigMap.postgresDbUser }}

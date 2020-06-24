@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "equitativa.fullname" . }}
+  labels:
+    {{- include "equitativa.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "equitativa.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "equitativa.selectorLabels" . | nindent 8 }}
+    spec:
+
+      initContainers:
+        - name: {{ .Chart.Name }}-check-db-ready
+          image: postgres:9.6.5
+          # replace the svc "postgres-postgresql-ha-postgresql" with the your  svc
+          command: ['sh', '-c', 
+            'until pg_isready -h postgres-postgresql-ha-postgresql -p 5432; 
+             do echo waiting for database; sleep 2; done;']
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresDbSecret.secretName }} 
+                  key: postgres_password
+  
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.postgresDbConfigMap.postgresDbConfigName }} 
+                  key:  postgres_user
+              
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.postgresDbConfigMap.postgresDbConfigName }}
+                  key: postgres_host
+
+                  
