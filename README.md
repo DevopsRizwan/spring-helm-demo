@@ -10,7 +10,7 @@ How to Reproduce this on your cluster.
 
 The project has been divided into two parts:-
 
-1. [Producing the docker image of spring](https://github.com/DevopsRizwan/spring-helm-demo/blob/master/helm-charts/README.md)
+1. [Producing the docker image of spring](https://github.com/DevopsRizwan/spring-helm-demo/blob/master/spring-app/README.md)
 
 2.  [Deploying with Helm](https://github.com/DevopsRizwan/spring-helm-demo/blob/master/spring-app/README.md)
 
