@@ -1,4 +1,4 @@
-Podtgresql-ha setup
+Potgresql-ha setup
 ==========
 
 There are lots of tools that help us to achieve the postgres-ha setup like Patroni,Stolon,PostgreSQL Automatic Failover (PAF)
@@ -17,7 +17,7 @@ sudo helm repo update
 sudo helm install postgres azure-marketplace/postgresql-ha
 ```
 By now you will be having 3 services running  primary(postgres-ha-secondary-0) and
-secondary as postgres-ha-secondary-1
+secondary as postgres-ha-secondary-1 and ha-pool service
 
 `alias k="sudo kubectl"` # set this alias for your ease optional
 
@@ -62,7 +62,7 @@ Get the POSTGRES_PASSWORD
 
  Yours will be different.
 
-[^1]: Ensure you base64 is correct by using echo -n "" | base64 --decode
+Ensure you base64 is correct by using echo -n "" | base64 --decode
 
 Replace the value at [values.yml](https://github.com/DevopsRizwan/spring-helm-demo/blame/master/helm-charts/equitativa/values.yaml#L24)
 
@@ -73,11 +73,13 @@ Now to get the ClusterIP of DB for sql-url connection
 
 Replace the ClusterIP at values.yml [postgresDbHost](https://github.com/DevopsRizwan/spring-helm-demo/blame/master/helm-charts/equitativa/values.yaml#L13)
 
-Prerequisite to run equitativa 
+Prerequisite to run equitativa helm deployment 
 --------
 
 1. Get the ClusterIP
 2. Get the POTGRESS_PASSWORD
+
+The process mentioned above will easily help us to get these two values.
 
 I am also using init container to check if my database service is up and running;
 

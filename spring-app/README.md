@@ -2,7 +2,7 @@
 ## How to build spring-helm-demo
 Prerequisite to run
 
-1. Docker installed n machine
+1. Docker installed on machine
 2. Maven >3.2
 
 Execute `./mvnw -DskipTests package`
@@ -25,7 +25,7 @@ It will create a target Jar with below output
 
 Change the repository URL as per your credentials
 
-`docker push <izwanjavid/equitativa_demo_app/0.0.6`
+`docker push rizwanjavid/equitativa_demo_app/0.0.6`
 
 Replace the value of tag and repostory links in [Values.yaml](http://github.com/DevopsRizwan/spring-helm-demo/blame/master/helm-charts/equitativa/values.yaml#L31-L34)
 
