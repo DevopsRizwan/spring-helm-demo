@@ -36,11 +36,7 @@ postgres-postgresql-ha-postgresql-headless   ClusterIP      None           <none
 }
 ```
 
-
-
-
 `k get pods`
-
 
 ```
 {NAME                                           READY   STATUS    RESTARTS   AGE
@@ -70,8 +66,6 @@ Get the POSTGRES_PASSWORD
 
 Replace the value at [values.yml](https://github.com/DevopsRizwan/spring-helm-demo/blame/master/helm-charts/equitativa/values.yaml#L24)
 
-
------
 
 Now to get the ClusterIP of DB for sql-url connection
 
