@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <header><title>equitativa</title></header>
+        <body style="background-color:black;color:white;padding:20px;text-align:center;">
+        <h1> Enter the value in the Registry</h1>
+        <tr th:if="${value == null}">
+            <div>No value saved</div>
+        </tr>
+        <tr th:if="${value != null}">
+            <div th:text="${value}"></div>
+        </tr>
+
+        <form  method="post" action="/save" class="form-actions">
+            <input type="text" name="value" />
+            <input type="submit" value="Save Value" />
+        </form>
+    </body>
+</html>
+
+    
+
