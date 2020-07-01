@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '70e5f60c-779c-48a9-b8d2-aed54fea61d3'
   imageRepository: 'devopsrizwanspringhelmdemo'
   containerRegistry: 'containerregistrydelphi.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: '**/spring-app/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'containerregistrydelphi1980-auth'
 
