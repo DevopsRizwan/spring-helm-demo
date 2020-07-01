@@ -31,10 +31,14 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: '**/spring-app/pom.xml' 
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
-        command: ./mvnw  **/spring-app/pom.xml -DskipTests package;buildAndPush
+        command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
