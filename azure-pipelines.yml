@@ -15,7 +15,7 @@ variables:
   imageRepository: 'devopsrizwanspringhelmdemo'
   containerRegistry: 'containerregistrydelphi.azurecr.io'
   dockerfilePath: '**/spring-app/Dockerfile'
-  mavenfilePath: 'spring-app/pom.xml'
+  buildfilePath: 'spring-app/build.sh'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'containerregistrydelphi1980-auth'
 
@@ -32,11 +32,9 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Maven@3
+    - task: ShellScript@2
       inputs:
-        mavenPomFile: $(mavenfilePath) 
-        goals: 'package'
-
+	scriptPath: $(buildfilePath)
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
