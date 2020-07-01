@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: devopsrizwanspringhelmdemo 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devopsrizwanspringhelmdemo 
+    spec:
+      containers:
+        - name: devopsrizwanspringhelmdemo 
+          image: containerregistrydelphi.azurecr.io/devopsrizwanspringhelmdemo
+          ports:
+          - containerPort: 8080/tcp
