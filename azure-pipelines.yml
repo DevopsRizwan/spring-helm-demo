@@ -58,5 +58,5 @@ stages:
             inputs:
               command: install
               chartType: FilePath
-              chartPath: 'helm-charts/equitativa'
+              chartPath: '**/helm-charts/equitativa/'
               releaseName: delphi-release
