@@ -18,17 +18,12 @@ variables:
   buildfilePath: 'spring-app/build.sh'
   helmchartFile: 'helm-charts/equitativa'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'containerregistrydelphi1980-auth'
-  user: 'bf771a9c-5165-4ea7-b296-17114d14742a'
-  password: 'ca4b7123-6304-4ed2-aa91-3d4c3e67ecbd'
-  tenant: '9123e8ef-4aad-4746-989f-2296ab92e67b'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
   
 
 stages:
-
 - stage: Build
   displayName: Build stage
   jobs:  
@@ -37,10 +32,6 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: ShellScript@2
-      inputs:
-        scriptPath: '$(buildfilePath)'
-         
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
@@ -49,27 +40,40 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
-          demo
-    - task: HelmInstaller@1
-      displayName: 'install helm'
-      inputs:
-        helmVersionToInstall: 3.0.0
+          $(tag)
+          
+    - upload: manifests
+      artifact: manifests
 
-    - task: HelmDeploy@0
-      displayName: Helm init
-      inputs:
-        command: init
-        upgradetiller: true
-        waitForExecution: true
-        arguments: --client-only
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
 
-    
-
-    - bash: |
-         az login \
-        --service-principal \
-        -u $(user) \
-        -p '$(password)' \
-        --tenant $(tenant) 
-        helm list
-        helm install myapp $(helmchartFile)
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'DevopsRizwanspringhelmdemo.default'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+              
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              manifests: |
+                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/service.yml
+              imagePullSecrets: |
+                $(imagePullSecret)
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
