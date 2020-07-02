@@ -47,16 +47,9 @@ stages:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-              
-          - task: HelmDeploy@3
-            displayName: Helm List 
+
+          - task: HelmInstaller@1
+            displayName: 'install helm'
             inputs:
-              command: ls
-              arguments: --all
-          - task: HelmDeploy@3
-            displayName: Helm Install 
-            inputs:
-              command: install
-              chartType: FilePath
-              chartPath: $(buildfilePath)
-              releaseName: delphi-release
+              helmVersionToInstall: $(helmVersion)
+         
