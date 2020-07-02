@@ -15,8 +15,8 @@ variables:
   imageRepository: 'devopsrizwanspringhelmdemo'
   containerRegistry: 'containerregistrydelphi.azurecr.io'
   dockerfilePath: '**/spring-app/Dockerfile'
-  buildfilePath: 'spring-app/build.sh'
-  helmchartFile: 'helm-charts/equitativa/Chart.yaml'
+  buildfilePath: './spring-app/build.sh'
+  helmchartFile: 'helm-charts/equitativa'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'containerregistrydelphi1980-auth'
 
@@ -25,31 +25,8 @@ variables:
   
 
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: ShellScript@2
-      inputs:
-        scriptPath: '$(buildfilePath)'
-         
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          demo
-          
-    - upload: manifests
-      artifact: manifests
 
+  
 - stage: Deploy
   displayName: Deploy stage
  # dependsOn: Build
@@ -70,16 +47,15 @@ stages:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+
+          - task: HelmInstaller@1
+            displayName: 'install helm'
+            inputs:
+              helmVersionToInstall: 3.0.0
+
+          - bash: |
+              helm list
+              helm init
+              helm install myapp ./$(helmchartFile)
               
-          - task: HelmDeploy@0
-            displayName: Helm List 
-            inputs:
-              command: ls
-              arguments: --all
-          - task: HelmDeploy@0
-            displayName: Helm Install 
-            inputs:
-              command: install
-              chartType: FilePath
-              chartPath: '$(helmchartFile)'
-              releaseName: delphi-release
+         
