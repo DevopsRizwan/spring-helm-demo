@@ -34,53 +34,31 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
- #   - task: ShellScript@2
- #     inputs:
- #       scriptPath: '$(buildfilePath)'
+    - task: ShellScript@2
+      inputs:
+      scriptPath: '$(buildfilePath)'
          
- #   - task: Docker@2
- #     displayName: Build and push an image to container registry
- #     inputs:
- #       command: buildAndPush
- #       repository: $(imageRepository)
- #       dockerfile: $(dockerfilePath)
- #       containerRegistry: $(dockerRegistryServiceConnection)
- #       tags: |
- #         demo
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          demo
 
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
 
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    pool:
-      vmImage: $(vmImageName)
-    environment: 'DevopsRizwanspringhelmdemo.default'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: KubernetesManifest@0
-            displayName: Create imagePullSecret
-            inputs:
-              action: createSecret
-              secretName: $(imagePullSecret)
-              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+    - task: HelmInstaller@1
+      displayName: 'install helm'
+      inputs:
+        helmVersionToInstall: 3.0.0
 
-          - task: HelmInstaller@1
-            displayName: 'install helm'
-            inputs:
-              helmVersionToInstall: 3.0.0
-
-          - bash: |
+    - bash: |
               helm list
-              ls $(pipeline.workspace)
-              ls  `pwd`
-              cd s
-              ls
+        
+            
               
-              #helm install myapp $(pipeline.workspace)/helm-charts/equitativa/
+              helm install myapp $(pipeline.workspace)/helm-charts/equitativa/
               
          
