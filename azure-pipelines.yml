@@ -48,12 +48,12 @@ stages:
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
               
-          - task: HelmDeploy@0
+          - task: HelmDeploy@3
             displayName: Helm List 
             inputs:
               command: ls
               arguments: --all
-          - task: HelmDeploy@0
+          - task: HelmDeploy@3
             displayName: Helm Install 
             inputs:
               command: install
