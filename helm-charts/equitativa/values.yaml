@@ -21,17 +21,17 @@ postgresDbSecret:
    secretName: postgres-secret-name
    
    # base64 encoded value for dbPassWord
-   dbPassword: dXJHSmZKNWhJWg==
+   dbPassword: bjNPZ2J6ZlFXdg==
 
 # Container defination and image secret defination
 
 container:
   name: spring-boot-postgres-sample
   image:
-    repository: rizwanjavid/equitativa_demo_app
+    repository: containerRegistryDelphi/devopsrizwanspringhelmdemo
    
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "0.0.6"
+    tag: "demo"
 
 imagePullSecrets: []
 nameOverride: ""
