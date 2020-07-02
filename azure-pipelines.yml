@@ -16,6 +16,7 @@ variables:
   containerRegistry: 'containerregistrydelphi.azurecr.io'
   dockerfilePath: '**/spring-app/Dockerfile'
   buildfilePath: 'spring-app/build.sh'
+  helmchartFile: 'helm-charts/equitativa'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'containerregistrydelphi1980-auth'
 
@@ -75,3 +76,9 @@ stages:
             inputs:
               command: ls
               arguments: --all
+          - task: HelmDeploy@0
+            displayName: Helm Install 
+            inputs:
+              command: install
+              chartType: FilePath
+              chartPath: $(helmchartFile)
