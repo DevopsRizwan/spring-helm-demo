@@ -58,5 +58,5 @@ stages:
             inputs:
               command: install
               chartType: FilePath
-              chartPath: 'helm-charts/'
+              chartPath: '**/spring-app/'
               releaseName: delphi-release
