@@ -55,8 +55,6 @@ stages:
 
           - bash: |
               helm list
-              helm repo add rizwan https://github.com/DevopsRizwan/spring-helm-demo/tree/master/helm-charts
-              helm init
-              helm install myapp ./$(helmchartFile)
+              helm install myapp $(pipeline.workspace)/helm-charts/equitativa/
               
          
