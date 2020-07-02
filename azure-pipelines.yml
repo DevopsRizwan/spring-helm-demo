@@ -58,5 +58,5 @@ stages:
             inputs:
               command: install
               chartType: FilePath
-              chartPath: '**/spring-app/'
+              chartPath: $(buildfilePath)
               releaseName: delphi-release
