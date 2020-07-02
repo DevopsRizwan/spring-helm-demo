@@ -71,7 +71,7 @@ stages:
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
               
           - task: HelmDeploy@0
-            displayName: Helm init 
+            displayName: Helm List 
             inputs:
-              command: init
-              arguments: --client-only
+              command: ls
+              arguments: --all
