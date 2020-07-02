@@ -57,6 +57,7 @@ stages:
               helm list
               ls $(pipeline.workspace)
               ls  `pwd`
+              cd s
               ls
               
               #helm install myapp $(pipeline.workspace)/helm-charts/equitativa/
