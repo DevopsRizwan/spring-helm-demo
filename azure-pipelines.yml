@@ -65,13 +65,11 @@ stages:
 
     
 
- #   - bash: |
- #        az login \
- ##       -- service-principal \
- #       -u $(user) \
- #       -p '$(password)' \
- #       --tenant $(tenant)
-
-        
- #       helm list
- #       helm install myapp $(helmchartFile)
+    - bash: |
+         az login \
+        --service-principal \
+        -u $(user) \
+        -p '$(password)' \
+        --tenant $(tenant) 
+        helm list
+        helm install myapp $(helmchartFile)
