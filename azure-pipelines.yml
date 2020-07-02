@@ -19,6 +19,9 @@ variables:
   helmchartFile: 'helm-charts/equitativa'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'containerregistrydelphi1980-auth'
+  user:bf771a9c-5165-4ea7-b296-17114d14742a
+  password:ca4b7123-6304-4ed2-aa91-3d4c3e67ecbd
+  tenant:9123e8ef-4aad-4746-989f-2296ab92e67b
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -52,6 +55,15 @@ stages:
       inputs:
         helmVersionToInstall: 3.0.0
 
+    
+
     - bash: |
+         az login \
+        --service-principal \
+        -u $(user) \
+        -p '$(password)' \
+        --tenant $(tenant)
+
+        
         helm list
         helm install myapp $(helmchartFile) 
