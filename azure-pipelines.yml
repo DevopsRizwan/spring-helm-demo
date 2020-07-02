@@ -54,6 +54,7 @@ stages:
               helmVersionToInstall: 3.0.0
 
           - bash: |
+              helm init
               helm install myapp $(helmchartFile)
               
          
