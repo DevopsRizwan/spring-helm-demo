@@ -55,7 +55,6 @@ stages:
 
           - bash: |
               helm repo update
-              helm init
               helm install myapp $(helmchartFile)
               
          
