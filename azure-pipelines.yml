@@ -16,7 +16,7 @@ variables:
   containerRegistry: 'containerregistrydelphi.azurecr.io'
   dockerfilePath: '**/spring-app/Dockerfile'
   buildfilePath: 'spring-app/build.sh'
-  helmchartFile: 'helm-charts/equitativa'
+  helmchartFile: 'helm-charts/'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'containerregistrydelphi1980-auth'
 
