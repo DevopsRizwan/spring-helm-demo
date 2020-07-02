@@ -47,18 +47,11 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           demo
-
-
     - task: HelmInstaller@1
       displayName: 'install helm'
       inputs:
         helmVersionToInstall: 3.0.0
 
     - bash: |
-              helm list
-        
-            
-              
-              helm install myapp $(pipeline.workspace)/helm-charts/equitativa/
-              
-         
+        helm list
+        helm install myapp $(helmchartFile) 
