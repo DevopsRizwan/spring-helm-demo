@@ -55,6 +55,8 @@ stages:
 
           - bash: |
               helm list
+              ls $(pipeline.workspace)
+              echo `pwd`
               helm install myapp $(pipeline.workspace)/helm-charts/equitativa/
               
          
