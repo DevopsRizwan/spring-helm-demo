@@ -36,7 +36,7 @@ stages{
     stage("Checkout"){
         steps{
 
-            checkout.call()
+            checkout.call([])
         }
     }
     }
