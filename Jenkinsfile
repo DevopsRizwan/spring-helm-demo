@@ -35,9 +35,10 @@ stages{
     
     stage("Checkout"){
         steps{
-          script{
-            checkout.checkout([])
-        }
+                checkout([$class: 'GitSCM', branches: [[name: 'master']],
+    userRemoteConfigs: [[url: 'https://github.com/DevopsRizwan/spring-helm-demo.git']]])
+            
+        
         }}
     }
 }
