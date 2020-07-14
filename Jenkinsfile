@@ -1,7 +1,11 @@
 @Library('sharedlibrary@master') _
-import checkout
+import pipeline
 
-test = """
+pipeline([
+mvnPath: "/usr/path"
+])
+
+/*test = """
 apiVersion: "v1"
 kind: "Pod"
 spec:
@@ -37,3 +41,4 @@ stages{
     }
     }
 }
+*/
