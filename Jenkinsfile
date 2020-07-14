@@ -1,6 +1,6 @@
 @Library('sharedlibrary@master') _
 import checkout
-//def checkout  = new checkout()
+def checkout  = new checkout()
 //pipeline([
 //mvnPath: "/usr/path"
 //])
@@ -36,7 +36,7 @@ stages{
     stage("Checkout"){
         steps{
 
-            checkout.checkout([])
+            checkout.checkout()
         }
     }
     }
