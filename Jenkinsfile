@@ -30,7 +30,7 @@ stages{
     stage("Checkout"){
         steps{
 
-            checkout()
+            checkout([])
         }
     }
     }
