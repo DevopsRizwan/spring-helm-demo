@@ -1,11 +1,12 @@
 #!groovy
 @Library('sharedlibrary')_
 //def checkout  = new checkout()
-//pipeline([
+pipeline
+//([
 //mvnPath: "/usr/path"
 //])
 
-test = """
+/*test = """
 apiVersion: "v1"
 kind: "Pod"
 spec:
@@ -45,4 +46,4 @@ stages{
         }}
     }
 }
-
+*/
