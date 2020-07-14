@@ -1,3 +1,4 @@
+#!groovy
 @Library('sharedlibrary') _
 //def checkout  = new checkout()
 //pipeline([
