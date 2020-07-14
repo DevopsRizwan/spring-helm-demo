@@ -1,5 +1,5 @@
 @Library('sharedlibrary@master') _
-import pipeline
+import checkout
 //def checkout  = new checkout()
 //pipeline([
 //mvnPath: "/usr/path"
