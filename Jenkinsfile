@@ -1,4 +1,6 @@
 @Library('sharedlibrary@master') _
+import checkout
+
 test = """
 apiVersion: "v1"
 kind: "Pod"
