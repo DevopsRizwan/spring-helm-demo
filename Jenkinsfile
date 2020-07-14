@@ -36,7 +36,10 @@ stages{
     stage("Checkout"){
         steps{
           script{
-                checkout
+                pipeline([
+              
+                ]
+                )
           }
         
         }}
