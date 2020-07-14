@@ -25,7 +25,7 @@ pipeline {
           yaml test
     }
    }
-satges{
+stages{
     
     stage("Checkout"){
         step{
