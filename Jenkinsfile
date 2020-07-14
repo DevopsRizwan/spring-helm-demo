@@ -1,4 +1,5 @@
-quse = """
+@Library(sharedlibrary@master) _
+test = """
 apiVersion: "v1"
 kind: "Pod"
 spec:
@@ -21,7 +22,7 @@ pipeline {
    agent {
     kubernetes{
           
-          yaml quse
+          yaml test
     }
    }
 satges{
