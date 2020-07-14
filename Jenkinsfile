@@ -36,7 +36,7 @@ stages{
     stage("Checkout"){
         steps{
           script{
-            checkout.call([])
+            checkout.checkout([])
         }
         }}
     }
