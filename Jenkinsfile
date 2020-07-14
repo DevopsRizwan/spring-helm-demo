@@ -1,11 +1,11 @@
 @Library('sharedlibrary@master') _
 import pipeline
+//def checkout  = new checkout()
+//pipeline([
+//mvnPath: "/usr/path"
+//])
 
-pipeline([
-mvnPath: "/usr/path"
-])
-
-/*test = """
+test = """
 apiVersion: "v1"
 kind: "Pod"
 spec:
@@ -36,9 +36,9 @@ stages{
     stage("Checkout"){
         steps{
 
-            checkout([])
+            checkout.checkout([])
         }
     }
     }
 }
-*/
+
