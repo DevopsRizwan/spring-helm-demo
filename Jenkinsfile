@@ -1,4 +1,4 @@
-@Library(sharedlibrary@master) _
+@Library('sharedlibrary@master') _
 test = """
 apiVersion: "v1"
 kind: "Pod"
