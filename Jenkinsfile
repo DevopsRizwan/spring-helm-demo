@@ -31,7 +31,7 @@ stages{
     
     stage("Checkout"){
         steps{
-         build_ci
+         build_ci 'Rizwan'
         
         }}
     }
