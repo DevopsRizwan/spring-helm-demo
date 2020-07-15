@@ -1,7 +1,7 @@
 #!groovy
 @Library('sharedlibrary')_
 //def checkout  = new checkout()
-checkout
+//checkout
 //([
 //mvnPath: "/usr/path"
 //])
