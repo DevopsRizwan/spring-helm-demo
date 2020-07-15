@@ -6,7 +6,7 @@ checkout
 //mvnPath: "/usr/path"
 //])
 
-/*test = """
+test = """
 apiVersion: "v1"
 kind: "Pod"
 spec:
@@ -36,14 +36,9 @@ stages{
     
     stage("Checkout"){
         steps{
-          script{
-                pipeline([
-              
-                ]
-                )
-          }
+         checkout
         
         }}
     }
 }
-*/
+
