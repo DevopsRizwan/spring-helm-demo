@@ -26,7 +26,7 @@ spec:
   
 """
 pipeline {
-   agent master
+   agent any
 stages{
     
     stage("Checkout"){
