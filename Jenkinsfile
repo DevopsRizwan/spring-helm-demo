@@ -38,7 +38,7 @@ stages{
          
          ])
           
-          my_function.build_cd 'mavenBuild'
+          my_function([ mvnPath:'mymvnpathvalue' ])
         }}
     }
 }
