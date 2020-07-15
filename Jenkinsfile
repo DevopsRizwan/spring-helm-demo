@@ -1,5 +1,5 @@
 #!groovy
-//@Library('sharedlibrary')_
+@Library('sharedlibrary')_
 //def checkout  = new checkout()
 //checkout
 //([
