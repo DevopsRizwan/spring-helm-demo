@@ -31,7 +31,9 @@ stages{
     
     stage("Checkout"){
         steps{
-         println "echo"
+         sh '''
+         echo test
+         '''
         
         }}
     }
