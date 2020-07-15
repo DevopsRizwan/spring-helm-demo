@@ -31,9 +31,7 @@ stages{
     
     stage("Checkout"){
         steps{
-         sh '''
-         echo test
-         '''
+         build_ci
         
         }}
     }
