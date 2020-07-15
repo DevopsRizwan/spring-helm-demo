@@ -37,6 +37,8 @@ stages{
          git_branch: "master"
          
          ])
+          
+          my_function.build_ci('mavenBuild')
         }}
     }
 }
