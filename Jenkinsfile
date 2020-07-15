@@ -38,7 +38,7 @@ stages{
          
          ])
           
-          my_function.build_ci('mavenBuild')
+          my_function.build_ci 'mavenBuild'
         }}
     }
 }
