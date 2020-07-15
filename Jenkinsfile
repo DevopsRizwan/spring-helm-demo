@@ -32,7 +32,7 @@ stages{
     stage("Checkout"){
         steps{
          build_ci 'Rizwan'
-         gitCheckout
+         gitCheckout()
         }}
     }
 }
