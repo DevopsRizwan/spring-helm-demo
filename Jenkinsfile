@@ -32,7 +32,11 @@ stages{
     stage("Checkout"){
         steps{
          build_ci 'Rizwan'
-         gitCheckout()
+         gitCheckout([
+         git_url: "https://github.com/DevopsRizwan/Demo.git",
+         git_branch: "master"
+         
+         ])
         }}
     }
 }
