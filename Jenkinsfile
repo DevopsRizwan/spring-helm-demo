@@ -27,10 +27,7 @@ spec:
 """
 pipeline {
    agent {
-    kubernetes{
-          
-          yaml test
-    }
+    label any
    }
 stages{
     
