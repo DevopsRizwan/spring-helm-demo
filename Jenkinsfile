@@ -33,12 +33,12 @@ stages{
         steps{
          build_ci 'Rizwan'
          gitCheckout([
-         git_url: "https://github.com/DevopsRizwan/Demo.git",
+         git_url: "https://github.com/jenkins-docs/simple-java-maven-app.git",
          git_branch: "master"
          
          ])
           
-          my_function([ mvnPath:'mymvnpathvalue' ])
+          my_function([ mvnPath:'simple-java-maven-app/pom.xml' ])
         }}
     }
 }
